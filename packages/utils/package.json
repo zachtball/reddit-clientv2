@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/reddit-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
