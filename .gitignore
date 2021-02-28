@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+
+# build stuff
+**/dist/
+**/tsconfig.tsbuildinfo
+
+.env
+
+# --------------- app ---------------------
+/packages/app/.pnp
+/packages/app/.pnp.js
+
+# testing
+/packages/app/coverage
+
+# production
+/packages/app/build
+
+/packages/app/.DS_Store
+/packages/app/.env.local
+/packages/app/.env.development.local
+/packages/app/.env.test.local
+/packages/app/.env.production.local
+
+/packages/app/npm-debug.log*
+/packages/app/yarn-debug.log*
+/packages/app/yarn-error.log*
+# -----------------------------------------
