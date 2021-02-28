@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "esnext",
     "types": [],
     "sourceMap": true,
     "target": "ES2018",
@@ -11,7 +11,8 @@
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "moduleResolution": "node"
   },
   "include": ["src"]
 }

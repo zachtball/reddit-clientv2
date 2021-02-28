@@ -44,8 +44,8 @@ export interface ITeam {
  */
 export interface IChannel {
   teamId: string;
-  name: string;
-  description: string;
-  id: string;
+  name: number;
+  description: number;
+  id: number;
   messages: IMessage[];
 }

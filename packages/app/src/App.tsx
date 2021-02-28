@@ -1,8 +1,10 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {IChannel} from '@zachtball/reddit-types';
 
 function App() {
+  const channel: IChannel = {teamId: 4, name: 4};
+  console.log(channel);
   return (
     <div className="App">
       <header className="App-header">
