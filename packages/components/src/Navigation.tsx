@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -63,7 +61,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ({ setAuthenticated }) => {
+interface NavigationProps {
+  setAuthenticated: (arg: boolean) => void
+}
+
+export default ({ setAuthenticated }: NavigationProps) => {
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();

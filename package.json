@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "lerna run start --scope app",
     "watch": "lerna exec yarn watch"
   },
   "devDependencies": {
