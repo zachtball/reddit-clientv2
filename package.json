@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "start": "lerna run start --scope app",
-    "watch": "lerna exec yarn watch"
+    "watch": "lerna bootstrap && lerna exec yarn watch"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.15.2",
