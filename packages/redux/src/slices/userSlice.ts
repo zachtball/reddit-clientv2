@@ -1,13 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IUser } from '@zachtball/reddit-types';
+import type { IUser } from '@zachtball/reddit-types';
 
 export const userActionTypes = {
   UPDATE_USER: 'UPDATE_USER',
 };
 
+interface IinitialState {
+  name?: string;
+  id?: number;
+  username?: string;
+}
+
+const initialState: IinitialState = {};
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {},
+  initialState,
   reducers: {
     setUser: (_, action: { payload: IUser }) => action.payload,
   },

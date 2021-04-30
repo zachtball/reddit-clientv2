@@ -1,5 +1,4 @@
 import { ReactElement, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   AppBar,
@@ -17,7 +16,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Menu as MenuIcon } from '@material-ui/icons';
-import { IUser } from '@zachtball/reddit-types';
+import { useSelector } from '@zachtball/reddit-redux';
 
 const drawerWidth = 240;
 
@@ -62,19 +61,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface NavigationProps {
-  setAuthenticated: (arg: boolean) => void;
-}
-
-export default ({ setAuthenticated }: NavigationProps): ReactElement => {
+export default (): ReactElement => {
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
-  const userName = useSelector(({ user }: { user: IUser }) => user.name);
+  const userName = useSelector((state) => state.user.name);
 
   const signOutClick = () => {
     localStorage.removeItem('REDDIT_TOKEN');
-    setAuthenticated(false);
     history.push('/login');
   };
 

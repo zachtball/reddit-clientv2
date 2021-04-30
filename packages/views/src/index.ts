@@ -1,1 +1,1 @@
-// export * from "./example";
+export { Home } from './Home';

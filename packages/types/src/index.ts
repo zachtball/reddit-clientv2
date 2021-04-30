@@ -6,4 +6,4 @@
  *
  * @packageDocumentation
  */
-export { IUser } from './types';
+export type { IUser } from './types';

@@ -6,6 +6,8 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#001628',
+      light: '#9ECCF1',
+      dark: '#113C5E',
     },
     secondary: {
       main: '#fff',
@@ -19,7 +21,7 @@ const theme = createMuiTheme({
     },
     text: {
       primary: '#fff',
-      secondary: 'rgba(255, 255, 255, 0.7)',
+      secondary: 'rgba(0, 22, 40, 0.7)',
     },
     divider: 'rgba(255, 255, 255, 0.12)',
   },

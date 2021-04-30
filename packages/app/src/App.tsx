@@ -1,8 +1,24 @@
+import { Navigation } from '@zachtball/reddit-components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Home } from '@zachtball/reddit-views';
+import './styles/main.scss';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">hi</header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <>
+            <Navigation />
+            <div className="app-container">
+              <Route exact path="/">
+                <Home />
+              </Route>
+            </div>
+          </>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

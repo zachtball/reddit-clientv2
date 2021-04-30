@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getMe, getToken } from '@zachtball/reddit-api';
 import { setUser } from '@zachtball/reddit-redux';
-import { IUser } from '@zachtball/reddit-types';
+import type { IUser } from '@zachtball/reddit-types';
 
 interface AuthRedirectProps {
   setAuthenticated: (arg: boolean) => void;
