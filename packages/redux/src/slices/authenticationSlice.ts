@@ -1,17 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const userActionTypes = {
   SET_AUTHENTICATED: 'SET_AUTHENTICATED',
+  SET_AUTHENTICATION_LOADING: 'SET_AUTHENTICATION_LOADING',
 };
 
 const authenticationSlice = createSlice({
-  name: 'authenticated',
-  initialState: false,
+  name: 'authentication',
+  initialState: { authenticated: false, isLoading: false },
   reducers: {
-    setAuthenticated: (_, action: { payload: boolean }) => action.payload,
+    setAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.authenticated = action.payload;
+    },
+    setAuthenticationLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = authenticationSlice;
-const { setAuthenticated } = actions;
-export default { actions, reducer, setAuthenticated };
+export default { actions, reducer };

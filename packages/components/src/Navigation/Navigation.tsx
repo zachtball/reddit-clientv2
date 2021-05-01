@@ -18,6 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import { useSelector } from '@zachtball/reddit-redux';
 
+export const redditAuthUrl =
+  'https://www.reddit.com/api/v1/authorize?client_id=7UvCwJJL9B9lrA&response_type=code&state=52%2FeJkJ0b0sutRg5KaidaOf2CH4zpUep%2BA4NaZ5Wd%2FU%3D&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth-redirect&duration=permanent&scope=account%20edit%20flair%20history%20identity%20mysubreddits%20privatemessages%20read%20report%20save%20submit%20subscribe%20vote%20wikiread';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -65,11 +68,12 @@ export default (): ReactElement => {
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
-  const userName = useSelector((state) => state.user.name);
+  const userName = useSelector(({ user }) => user.name);
+  const authenticated = useSelector(({ authenticated }) => authenticated.authenticated);
 
   const signOutClick = () => {
     localStorage.removeItem('REDDIT_TOKEN');
-    history.push('/login');
+    history.push('/');
   };
 
   const handleDrawerToggle = () => {
@@ -106,6 +110,18 @@ export default (): ReactElement => {
     </div>
   );
 
+  const signInOrOut = authenticated ? (
+    <Button color="primary" onClick={signOutClick}>
+      Sign out
+    </Button>
+  ) : (
+    <a className="login-link link-button" href={redditAuthUrl}>
+      <Button variant="contained" color="primary">
+        Sign in
+      </Button>
+    </a>
+  );
+
   const container = window !== undefined ? () => window.document.body : undefined;
   return (
     <>
@@ -124,9 +140,7 @@ export default (): ReactElement => {
             Wroteit
           </Typography>
           <div className={classes.appBarContent} />
-          <Button color="inherit" onClick={signOutClick}>
-            Sign out
-          </Button>
+          {signInOrOut}
         </Toolbar>
       </AppBar>
       <Hidden smUp implementation="css">

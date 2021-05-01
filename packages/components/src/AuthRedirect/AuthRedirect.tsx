@@ -1,18 +1,12 @@
 import { useEffect, useState, ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { getMe, getToken } from '@zachtball/reddit-api';
-import { setUser } from '@zachtball/reddit-redux';
+import { setUser, setAuthenticated, setAuthenticationLoading, useDispatch, useSelector } from '@zachtball/reddit-redux';
 import type { IUser } from '@zachtball/reddit-types';
 
-interface AuthRedirectProps {
-  setAuthenticated: (arg: boolean) => void;
-  setLoading: (arg: boolean) => void;
-  authenticated: boolean;
-}
-
-export default ({ setAuthenticated, setLoading, authenticated }: AuthRedirectProps): ReactElement => {
+export default (): ReactElement => {
   const dispatch = useDispatch();
+  const authenticated = useSelector(({ authenticated }) => authenticated.authenticated);
   const [token, setToken] = useState<null | string>(null);
   const history = useHistory();
   const codeParam = new URLSearchParams(window.location.href).get('code');
@@ -20,7 +14,7 @@ export default ({ setAuthenticated, setLoading, authenticated }: AuthRedirectPro
     if (authenticated) {
       history.push('/');
     }
-    setLoading(true);
+    setAuthenticationLoading(true);
     if (codeParam) {
       getToken(codeParam)
         .then((res) => {
@@ -29,8 +23,8 @@ export default ({ setAuthenticated, setLoading, authenticated }: AuthRedirectPro
         })
         .catch((err: unknown) => {
           console.log('error authenticating', err);
-          setLoading(false);
-          history.push('/login');
+          setAuthenticationLoading(false);
+          history.push('/error');
         });
     }
   }, []);
@@ -42,7 +36,7 @@ export default ({ setAuthenticated, setLoading, authenticated }: AuthRedirectPro
         .then(({ data }: { data: IUser }) => {
           console.log(data);
           dispatch(setUser(data));
-          setLoading(false);
+          setAuthenticationLoading(false);
           history.push('/');
         })
         .catch((err: unknown) => console.log(err));
