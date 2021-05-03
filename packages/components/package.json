@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/reddit-components",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -9,8 +9,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@zachtball/reddit-types": "0.0.4",
-    "@zachtball/reddit-redux": "0.0.3"
+    "@zachtball/reddit-redux": "^0.0.4",
+    "@zachtball/reddit-types": "0.0.4"
   },
   "scripts": {
     "build": "tsc -b .",
