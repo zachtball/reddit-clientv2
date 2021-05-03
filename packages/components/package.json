@@ -8,6 +8,10 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
+  "dependencies": {
+    "@zachtball/reddit-types": "0.0.4",
+    "@zachtball/reddit-redux": "0.0.3"
+  },
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",

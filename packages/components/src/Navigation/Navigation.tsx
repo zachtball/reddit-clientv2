@@ -69,11 +69,11 @@ export default (): ReactElement => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const userName = useSelector(({ user }) => user.name);
-  const authenticated = useSelector(({ authenticated }) => authenticated.authenticated);
+  const authenticated = useSelector(({ authentication }) => authentication.authenticated);
 
   const signOutClick = () => {
     localStorage.removeItem('REDDIT_TOKEN');
-    history.push('/');
+    history.go(0);
   };
 
   const handleDrawerToggle = () => {
@@ -111,11 +111,11 @@ export default (): ReactElement => {
   );
 
   const signInOrOut = authenticated ? (
-    <Button color="primary" onClick={signOutClick}>
+    <Button variant="contained" color="primary" onClick={signOutClick}>
       Sign out
     </Button>
   ) : (
-    <a className="login-link link-button" href={redditAuthUrl}>
+    <a className="link-button" href={redditAuthUrl}>
       <Button variant="contained" color="primary">
         Sign in
       </Button>

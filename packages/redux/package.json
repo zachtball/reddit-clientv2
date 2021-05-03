@@ -8,6 +8,9 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
+  "dependencies": {
+    "@zachtball/reddit-types": "0.0.4"
+  },
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",

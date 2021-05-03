@@ -3,6 +3,7 @@ node_modules/
 
 # build stuff
 **/dist/
+**/yarn-error.log
 **/tsconfig.tsbuildinfo
 
 .env
@@ -19,6 +20,7 @@ node_modules/
 
 /packages/app/.DS_Store
 /packages/app/.env.local
+/packages/app/.env
 /packages/app/.env.development.local
 /packages/app/.env.test.local
 /packages/app/.env.production.local
