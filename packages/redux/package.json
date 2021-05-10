@@ -15,7 +15,9 @@
     "@zachtball/reddit-utils": ">=0.0.4",
     "@zachtball/reddit-views": ">=0.0.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@zachtball/reddit-types": "0.0.4"
+  },
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",
