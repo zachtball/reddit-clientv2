@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -16,7 +16,6 @@
     "@zachtball/reddit-utils": ">=0.0.4",
     "@zachtball/reddit-views": ">=0.0.3"
   },
-  "dependencies": {},
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",
