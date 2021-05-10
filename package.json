@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start": "lerna run start --scope app --stream",
-    "watch": "lerna bootstrap && lerna exec yarn watch",
+    "watch": "lerna bootstrap && lerna exec yarn build --stream --ignore app && lerna exec yarn watch --parallel --stream --ignore app",
+    "clean": "lerna exec yarn clean",
     "lerna-publish": "lerna exec yarn clean && lerna bootstrap && lerna exec yarn build --ignore app && lerna publish"
   },
   "devDependencies": {

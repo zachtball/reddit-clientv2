@@ -18,5 +18,4 @@ const authenticationSlice = createSlice({
   },
 });
 
-const { actions, reducer } = authenticationSlice;
-export default { actions, reducer };
+export default authenticationSlice;

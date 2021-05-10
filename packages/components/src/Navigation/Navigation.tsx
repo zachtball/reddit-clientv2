@@ -15,13 +15,14 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Menu as MenuIcon } from '@material-ui/icons';
+import { Menu as MenuIcon, Home as HomeIcon } from '@material-ui/icons';
 import { useSelector } from '@zachtball/reddit-redux';
+import { Subreddit } from './components';
 
 export const redditAuthUrl =
   'https://www.reddit.com/api/v1/authorize?client_id=7UvCwJJL9B9lrA&response_type=code&state=52%2FeJkJ0b0sutRg5KaidaOf2CH4zpUep%2BA4NaZ5Wd%2FU%3D&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth-redirect&duration=permanent&scope=account%20edit%20flair%20history%20identity%20mysubreddits%20privatemessages%20read%20report%20save%20submit%20subscribe%20vote%20wikiread';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,9 +63,13 @@ const useStyles = makeStyles((theme) => ({
   appBarContent: {
     flexGrow: 1,
   },
+  list: {
+    padding: 0,
+    marginTop: '1rem',
+  },
 }));
 
-export default (): ReactElement => {
+export const Navigation = (): ReactElement => {
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
@@ -81,32 +86,26 @@ export default (): ReactElement => {
   };
 
   const drawer = (
-    <div>
+    <div className="m-navigation">
       <div className={classes.toolbar}>
         <ListItemText primary={userName} primaryTypographyProps={{ align: 'center' }} />
       </div>
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              <MenuIcon color="secondary" />
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <List className={classes.list}>
+        <ListItem button>
+          <ListItemIcon>
+            <HomeIcon color="secondary" />
+          </ListItemIcon>
+          <ListItemText disableTypography primary="Home" className="text-large" />
+        </ListItem>
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              <MenuIcon color="secondary" />
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <div className="m-navigation__subreddits">
+        <List className={classes.list}>
+          {['All mail', 'Trash', 'Spam'].map((text, i) => (
+            <Subreddit key={i} name={text} />
+          ))}
+        </List>
+      </div>
     </div>
   );
 
@@ -174,3 +173,5 @@ export default (): ReactElement => {
     </>
   );
 };
+
+export default Navigation;

@@ -15,10 +15,15 @@
     "lint": "eslint src --ext js,ts",
     "clean": "rimraf dist *.tsbuildinfo"
   },
+  "peerDependencies": {
+    "react": ">=17.0.2",
+    "@reduxjs/toolkit": "^1.6.0-alpha.2",
+    "@zachtball/reddit-types": ">=0.0.4",
+    "@zachtball/reddit-utils": ">=0.0.4"
+  },
   "dependencies": {
     "@zachtball/reddit-types": "0.0.4",
-    "date-fns": "^2.17.0",
-    "react": "^17.0.2"
+    "date-fns": "^2.17.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.13.8",

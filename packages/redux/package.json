@@ -8,9 +8,14 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
-  "dependencies": {
-    "@zachtball/reddit-types": "0.0.4"
+  "peerDependencies": {
+    "@reduxjs/toolkit": ">=^1.6.0-alpha.2",
+    "@zachtball/reddit-components": ">=0.0.5",
+    "@zachtball/reddit-types": ">=0.0.4",
+    "@zachtball/reddit-utils": ">=0.0.4",
+    "@zachtball/reddit-views": ">=0.0.3"
   },
+  "dependencies": {},
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",
