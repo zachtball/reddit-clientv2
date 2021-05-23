@@ -17,6 +17,7 @@
   },
   "peerDependencies": {
     "@reduxjs/toolkit": "^1.6.0-alpha.2",
+    "@zachtball/reddit-api": ">=0.0.4",
     "@zachtball/reddit-components": ">=0.0.5",
     "@zachtball/reddit-redux": ">=0.0.4",
     "@zachtball/reddit-types": ">=0.0.4",
