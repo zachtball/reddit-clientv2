@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import userSlice from './slices/userSlice';
 import authenticationSlice from './slices/authenticationSlice';
-import { userApi } from '@zachtball/reddit-api';
+import { userApi } from './queries';
 
 export const store = configureStore({
   reducer: {

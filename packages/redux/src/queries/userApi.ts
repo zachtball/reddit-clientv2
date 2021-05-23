@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RootState } from '@zachtball/reddit-redux';
+import { RootState } from '../index';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const userApi: any = createApi({

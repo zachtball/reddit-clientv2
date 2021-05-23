@@ -11,3 +11,6 @@ export { useDispatch, useSelector, store, RootState };
 
 // actions
 export { setUser, setAuthenticated, setAuthenticationLoading, setToken };
+
+//queries
+export * from './queries';

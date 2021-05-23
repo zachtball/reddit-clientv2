@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
-import { useGetMyQuery } from '@zachtball/reddit-api';
-import { useSelector } from '@zachtball/reddit-redux';
+import { useSelector, useGetMyQuery } from '@zachtball/reddit-redux';
 
 export const Home = (): ReactElement => {
   const authenticated = useSelector(({ auth }) => auth.authenticated);
