@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/template",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -8,7 +8,6 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com"
   },
-  "peerDependencies": {},
   "scripts": {
     "build": "tsc -b .",
     "watch": "tsc -w",
