@@ -3,10 +3,15 @@ import { Navigation } from '@zachtball/reddit-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from '@zachtball/reddit-views';
 import { AuthRedirect } from '@zachtball/reddit-components';
-import { getMe, httpInit, getMySubreddits } from '@zachtball/reddit-api';
-import { IUser } from '@zachtball/reddit-types';
+import { httpInit } from '@zachtball/reddit-api';
 import { makeStyles } from '@material-ui/core';
-import { useSelector, setAuthenticated, useDispatch, setUser, setAuthenticationLoading } from '@zachtball/reddit-redux';
+import {
+  useSelector,
+  setAuthenticated,
+  useDispatch,
+  setAuthenticationLoading,
+  setToken,
+} from '@zachtball/reddit-redux';
 import './styles/main.scss';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,34 +21,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = (): ReactElement => {
-  const { current: token } = useRef(localStorage.getItem('REDDIT_TOKEN'));
+  const { current: storageToken } = useRef(localStorage.getItem('REDDIT_TOKEN'));
   const dispatch = useDispatch();
-  const { isLoading: authLoading, authenticated } = useSelector(({ authentication }) => authentication);
-  const userName = useSelector(({ user }) => user.name);
+  const { isLoading: authLoading } = useSelector(({ auth }) => auth);
   const classes = useStyles();
+
   useEffect(() => {
-    if (token) {
-      httpInit(token);
-      if (!authenticated) {
-        dispatch(setAuthenticationLoading(true));
-        if (userName) {
-          dispatch(setAuthenticated(true));
-          dispatch(setAuthenticationLoading(false));
-        } else {
-          getMe()
-            .then(({ data }: { data: IUser }) => {
-              dispatch(setUser(data));
-              dispatch(setAuthenticated(true));
-              dispatch(setAuthenticationLoading(false));
-            })
-            .catch((err: unknown) => console.log(err));
-          getMySubreddits()
-            .then(({ data }: { data: unknown }) => console.log(data))
-            .catch((err: unknown) => console.log(err));
-        }
-      }
+    dispatch(setAuthenticationLoading(true));
+    if (storageToken) {
+      httpInit(storageToken);
+      dispatch(setToken(storageToken));
+      dispatch(setAuthenticated(true));
+      dispatch(setAuthenticationLoading(false));
     } else {
-      // default home api calls
+      dispatch(setAuthenticated(false));
+      dispatch(setAuthenticationLoading(false));
     }
   }, []);
   return (

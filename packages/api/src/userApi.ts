@@ -1,10 +1,29 @@
-import http from './http';
-import { AxiosPromise } from 'axios';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { RootState } from '@zachtball/reddit-redux';
 
-export const getMe = (): AxiosPromise => {
-  return http.get('api/user/me');
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const userApi: any = createApi({
+  reducerPath: 'user2',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'api/user/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
 
-export const getMySubreddits = (): AxiosPromise => {
-  return http.get('api/user/subreddits');
-};
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
+  }),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  endpoints: (builder: any) => ({
+    getMy: builder.query({
+      query: (detail: string) => detail,
+    }),
+  }),
+});
+
+const { useGetMyQuery } = userApi;
+
+export { useGetMyQuery };

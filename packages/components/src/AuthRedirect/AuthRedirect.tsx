@@ -1,19 +1,25 @@
 import { useEffect, useState, ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getMe, getToken, httpInit } from '@zachtball/reddit-api';
-import { setUser, setAuthenticated, setAuthenticationLoading, useDispatch, useSelector } from '@zachtball/reddit-redux';
-import type { IUser } from '@zachtball/reddit-types';
+import { getToken, httpInit } from '@zachtball/reddit-api';
+import {
+  setAuthenticated,
+  setAuthenticationLoading,
+  useDispatch,
+  useSelector,
+  setToken,
+} from '@zachtball/reddit-redux';
 
 export default (): ReactElement => {
   const dispatch = useDispatch();
-  const authenticated = useSelector(({ authentication }) => authentication.authenticated);
-  const [token, setToken] = useState<null | string>(null);
+  const authenticated = useSelector(({ auth }) => auth.authenticated);
+  const [token, setTokenState] = useState<null | string>(null);
   const history = useHistory();
   const url = window.location.href.substring(0, window.location.href.length - 2);
-
+  console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
-      history.push('/');
+      history.replace('/');
+      return;
     }
     dispatch(setAuthenticationLoading(true));
     const codeParam = new URLSearchParams(url).get('code');
@@ -22,7 +28,8 @@ export default (): ReactElement => {
         .then((res) => {
           httpInit(res.data);
           localStorage.setItem('REDDIT_TOKEN', res.data);
-          setToken(res.data);
+          setTokenState(res.data);
+          dispatch(setToken(res.data));
         })
         .catch((err: unknown) => {
           console.log('error authenticating', err);
@@ -35,13 +42,8 @@ export default (): ReactElement => {
   useEffect(() => {
     if (token) {
       dispatch(setAuthenticated(true));
-      getMe()
-        .then(({ data }: { data: IUser }) => {
-          dispatch(setUser(data));
-          dispatch(setAuthenticationLoading(false));
-          history.push('/');
-        })
-        .catch((err: unknown) => console.log(err));
+      dispatch(setAuthenticationLoading(false));
+      history.push('/');
     }
   }, [token]);
 
