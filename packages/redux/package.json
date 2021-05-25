@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/reddit-redux",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -13,7 +13,7 @@
     "react-redux": "^7.2.2"
   },
   "dependencies": {
-    "@zachtball/reddit-types": "^0.0.6"
+    "@zachtball/reddit-types": "^0.0.7"
   },
   "scripts": {
     "build": "tsc -b .",
