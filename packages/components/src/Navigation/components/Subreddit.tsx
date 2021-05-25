@@ -1,17 +1,15 @@
 import { ReactElement } from 'react';
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
+import { ListItem, ListItemText, Avatar } from '@material-ui/core';
 
 interface ISubredditProps {
   name: string;
+  icon: string;
 }
 
-export const Subreddit = ({ name }: ISubredditProps): ReactElement => {
+export const Subreddit = ({ name, icon }: ISubredditProps): ReactElement => {
   return (
     <ListItem button key={name}>
-      <ListItemIcon>
-        <MenuIcon color="secondary" />
-      </ListItemIcon>
+      <Avatar alt={name} src={icon} />
       <ListItemText primary={name} />
     </ListItem>
   );
