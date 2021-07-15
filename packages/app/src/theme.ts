@@ -1,8 +1,14 @@
 import { red } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { Theme as MuiTheme } from '@material-ui/core/styles';
+
+declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Theme extends MuiTheme {}
+}
 
 // A custom theme for this app
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#001628',

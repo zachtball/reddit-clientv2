@@ -1,6 +1,9 @@
 {
   "presets": [
-    ["@babel/preset-env", {"targets": {"node": 10} }],
-    "@babel/preset-typescript"
-  ]
+    ["@babel/preset-env", { "targets": { "node": 10 } }],
+    "@babel/preset-typescript",
+    ["@babel/preset-react", { "runtime": "automatic", "importSource": "@emotion/react" }],
+    "@emotion/babel-preset-css-prop"
+  ],
+  "plugins": ["@emotion"]
 }

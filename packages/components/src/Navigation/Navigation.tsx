@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { ReactElement, useState, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
@@ -14,75 +15,27 @@ import {
   ListItemText,
   Hidden,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Menu as MenuIcon, Home as HomeIcon } from '@material-ui/icons';
 import { useSelector, useGetMyQuery } from '@zachtball/reddit-redux';
 import { ISubreddit } from '@zachtball/reddit-types';
 import { Subreddit } from './components';
+import * as styles from './Navigation.styles';
 
 export const redditAuthUrl =
   'https://www.reddit.com/api/v1/authorize?client_id=7UvCwJJL9B9lrA&response_type=code&state=52%2FeJkJ0b0sutRg5KaidaOf2CH4zpUep%2BA4NaZ5Wd%2FU%3D&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth-redirect&duration=permanent&scope=account%20edit%20flair%20history%20identity%20mysubreddits%20privatemessages%20read%20report%20save%20submit%20subscribe%20vote%20wikiread';
 
-const drawerWidth = 300;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: {
-    ...theme.mixins.toolbar,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  appBarContent: {
-    flexGrow: 1,
-  },
-  list: {
-    padding: 0,
-    marginTop: '1rem',
-  },
-}));
-
 export const Navigation = (): ReactElement => {
   const history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const classes = useStyles();
   const authenticated = useSelector(({ auth }) => auth.authenticated);
   const { data: user } = useGetMyQuery('me', { skip: !authenticated });
   const { data: subreddits, isLoading }: { data: ISubreddit[]; isLoading: boolean } = useGetMyQuery('subreddits', {
     skip: !authenticated,
   });
 
-  const orderedSubs = useMemo(() => {
-    if (subreddits) {
-      const filteredAndSortedSubs: ISubreddit[] | Array<unknown> = subreddits
+  const orderSubs = (): ISubreddit[] => {
+    if (subreddits?.length) {
+      const filteredAndSortedSubs: ISubreddit[] = subreddits
         .filter((sub: ISubreddit) => {
           const nameArray: string[] = sub.display_name_prefixed.split('');
           return `${nameArray[0]}${nameArray[1]}` === 'r/';
@@ -91,10 +44,14 @@ export const Navigation = (): ReactElement => {
           const sortOrder: number = a.display_name.localeCompare(b.display_name);
           return sortOrder;
         });
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return filteredAndSortedSubs;
     }
     return [];
-  }, [subreddits?.length]);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const memoizedOrderedSubs = useMemo(() => orderSubs(), [subreddits?.length]);
 
   const signOutClick = () => {
     localStorage.removeItem('REDDIT_TOKEN');
@@ -107,11 +64,11 @@ export const Navigation = (): ReactElement => {
 
   const drawer = (
     <div className="m-navigation">
-      <div className={classes.toolbar}>
+      <div css={styles.toolbar}>
         <ListItemText primary={user?.name} primaryTypographyProps={{ align: 'center' }} />
       </div>
       <Divider />
-      <List className={classes.list}>
+      <List css={styles.list}>
         <ListItem button>
           <ListItemIcon>
             <HomeIcon color="secondary" />
@@ -120,9 +77,9 @@ export const Navigation = (): ReactElement => {
         </ListItem>
       </List>
       <div className="m-navigation__subreddits">
-        <List className={classes.list}>
+        <List css={styles.list}>
           {!isLoading &&
-            orderedSubs.map((subreddit: ISubreddit, i: number) => (
+            memoizedOrderedSubs.map((subreddit: ISubreddit, i: number) => (
               <Subreddit key={i} name={subreddit.display_name_prefixed} icon={subreddit.icon_img} />
             ))}
         </List>
@@ -145,21 +102,21 @@ export const Navigation = (): ReactElement => {
   const container = window !== undefined ? () => window.document.body : undefined;
   return (
     <>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" css={styles.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
+            css={styles.menuButton}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Wroteit
           </Typography>
-          <div className={classes.appBarContent} />
+          <div css={styles.appBarContent} />
           {signInOrOut}
         </Toolbar>
       </AppBar>
@@ -170,9 +127,7 @@ export const Navigation = (): ReactElement => {
           anchor="left"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
+          css={styles.drawerPaper}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -181,13 +136,7 @@ export const Navigation = (): ReactElement => {
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation="css">
-        <Drawer
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          variant="permanent"
-          open
-        >
+        <Drawer css={styles.drawerPaper} variant="permanent" open>
           {drawer}
         </Drawer>
       </Hidden>

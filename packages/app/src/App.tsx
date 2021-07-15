@@ -1,10 +1,13 @@
+/** @jsxImportSource @emotion/react */
 import { ReactElement, useEffect, useRef } from 'react';
 import { Navigation } from '@zachtball/reddit-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from '@zachtball/reddit-views';
 import { AuthRedirect } from '@zachtball/reddit-components';
 import { httpInit } from '@zachtball/reddit-api';
-import { makeStyles } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
+import { css } from '@emotion/react';
+
 import {
   useSelector,
   setAuthenticated,
@@ -14,17 +17,21 @@ import {
 } from '@zachtball/reddit-redux';
 import './styles/main.scss';
 
-const useStyles = makeStyles((theme) => ({
-  appContainer: {
-    backgroundColor: theme.palette.primary.light,
-  },
-}));
+const appContainerStyle = (theme: Theme) => css`
+  background-color: ${theme.palette.primary.light};
+  margin-top: 56px;
+  @media only screen and (min-width: 600px) {
+    margin-left: 300px;
+    margin-top: 64px;
+  }
+  height: calc(100vh - 64px);
+  overflow: auto;
+`;
 
 const App = (): ReactElement => {
   const { current: storageToken } = useRef(localStorage.getItem('REDDIT_TOKEN'));
   const dispatch = useDispatch();
   const { isLoading: authLoading } = useSelector(({ auth }) => auth);
-  const classes = useStyles();
 
   useEffect(() => {
     dispatch(setAuthenticationLoading(true));
@@ -49,7 +56,7 @@ const App = (): ReactElement => {
             {!authLoading && (
               <>
                 <Navigation />
-                <div className={`app-container ${classes.appContainer}`}>
+                <div css={appContainerStyle}>
                   <Route exact path="/">
                     <Home />
                   </Route>
