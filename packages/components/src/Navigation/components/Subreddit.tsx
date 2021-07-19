@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { ListItem, ListItemText, Avatar } from '@material-ui/core';
+import { textStyle } from './Subreddit.styles';
 
 interface ISubredditProps {
   name: string;
@@ -10,7 +11,7 @@ export const Subreddit = ({ name, icon }: ISubredditProps): ReactElement => {
   return (
     <ListItem button key={name}>
       <Avatar alt={name} src={icon} />
-      <ListItemText primary={name} />
+      <ListItemText css={textStyle} primary={name} />
     </ListItem>
   );
 };

@@ -15,7 +15,6 @@ export default (): ReactElement => {
   const [token, setTokenState] = useState<null | string>(null);
   const history = useHistory();
   const url = window.location.href.substring(0, window.location.href.length - 2);
-  console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
       history.replace('/');

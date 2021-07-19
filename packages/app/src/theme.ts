@@ -31,6 +31,11 @@ const theme = createTheme({
     },
     divider: 'rgba(255, 255, 255, 0.12)',
   },
+  typography: {
+    body1: {
+      fontSize: '0.85rem',
+    },
+  },
 });
 
 export default theme;

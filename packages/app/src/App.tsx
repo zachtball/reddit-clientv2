@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { ReactElement, useEffect, useRef } from 'react';
-import { Navigation } from '@zachtball/reddit-components';
+import { Navigation, drawerWidth } from '@zachtball/reddit-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from '@zachtball/reddit-views';
 import { AuthRedirect } from '@zachtball/reddit-components';
@@ -21,7 +21,7 @@ const appContainerStyle = (theme: Theme) => css`
   background-color: ${theme.palette.primary.light};
   margin-top: 56px;
   @media only screen and (min-width: 600px) {
-    margin-left: 300px;
+    margin-left: ${drawerWidth}px;
     margin-top: 64px;
   }
   height: calc(100vh - 64px);
@@ -55,12 +55,13 @@ const App = (): ReactElement => {
             </Route>
             {!authLoading && (
               <>
-                <Navigation />
-                <div css={appContainerStyle}>
+                <Navigation>
                   <Route exact path="/">
-                    <Home />
+                    <div css={appContainerStyle}>
+                      <Home />
+                    </div>
                   </Route>
-                </div>
+                </Navigation>
               </>
             )}
           </>

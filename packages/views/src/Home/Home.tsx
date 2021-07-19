@@ -3,7 +3,7 @@ import { useSelector, useGetMyQuery } from '@zachtball/reddit-redux';
 
 export const Home = (): ReactElement => {
   const authenticated = useSelector(({ auth }) => auth.authenticated);
-  console.log(!authenticated);
+
   const { data, error } = useGetMyQuery('me', { skip: !authenticated });
   console.log({ data, error });
   return <div>home</div>;
