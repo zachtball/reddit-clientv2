@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/reddit-views",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@zachtball/reddit-api": "^0.0.6",
     "@zachtball/reddit-components": "^0.0.5",
-    "@zachtball/reddit-redux": "^0.0.8",
+    "@zachtball/reddit-redux": "^0.0.9",
     "@zachtball/reddit-types": "^0.0.4",
     "@zachtball/reddit-utils": "^0.0.4"
   },
