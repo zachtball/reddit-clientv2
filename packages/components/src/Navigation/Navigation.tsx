@@ -15,7 +15,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { Menu as MenuIcon, Home as HomeIcon } from '@material-ui/icons';
-import { useSelector, useGetMyQuery, useGetContentQuery } from '@zachtball/reddit-redux';
+import { useSelector, useGetMyQuery } from '@zachtball/reddit-redux';
 import { ISubreddit } from '@zachtball/reddit-types';
 import { Subreddit, SideNavSkeleton } from './components';
 import * as styles from './Navigation.styles';
@@ -28,11 +28,9 @@ export const Navigation = ({ children }: { children: ReactNode }): ReactElement 
   const [mobileOpen, setMobileOpen] = useState(false);
   const authenticated = useSelector(({ auth }) => auth.authenticated);
   const { data: user } = useGetMyQuery('me', { skip: !authenticated });
-  const { data: content } = useGetContentQuery('best', { skip: !authenticated });
   const { data: subreddits, isLoading }: { data: ISubreddit[]; isLoading: boolean } = useGetMyQuery('subreddits', {
     skip: !authenticated,
   });
-  console.log({ content });
   const orderSubs = (): ISubreddit[] => {
     if (subreddits?.length) {
       const filteredAndSortedSubs: ISubreddit[] = subreddits

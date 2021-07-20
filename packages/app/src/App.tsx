@@ -26,6 +26,7 @@ const appContainerStyle = (theme: Theme) => css`
   }
   height: calc(100vh - 64px);
   overflow: auto;
+  padding: ${theme.spacing(3)};
 `;
 
 const App = (): ReactElement => {

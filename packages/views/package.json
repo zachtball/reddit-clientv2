@@ -17,13 +17,14 @@
   },
   "peerDependencies": {
     "@reduxjs/toolkit": "^1.6.0-alpha.2",
+    "@emotion/react": ">=11.4.0",
     "react": ">=17.0.2"
   },
   "dependencies": {
     "@zachtball/reddit-api": "^0.0.6",
-    "@zachtball/reddit-components": "^0.0.5",
+    "@zachtball/reddit-components": "^0.0.10",
     "@zachtball/reddit-redux": "^0.0.9",
-    "@zachtball/reddit-types": "^0.0.4",
+    "@zachtball/reddit-types": "^0.0.8",
     "@zachtball/reddit-utils": "^0.0.4"
   },
   "devDependencies": {

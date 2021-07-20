@@ -3552,22 +3552,7 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@zachtball/reddit-components@^0.0.5":
-  version "0.0.5"
-  resolved "https://npm.pkg.github.com/download/@zachtball/reddit-components/0.0.5/e2d059ed9e686e0c97bd5dda553a26ddeeccbb5e59b656e90eda17ba771003c9#19a2dea5005182dfa3504dc362865589cd0a8baa"
-  integrity sha512-Y/Vh4eyjwnuz0j1vhGky4GlwF2o5/Cic5fcI/EMLUk0fCs2okZ2v/ZoA9hgp62giA9mV6uGtTMb5iz/1hLh/Yg==
-  dependencies:
-    "@zachtball/reddit-redux" "^0.0.4"
-    "@zachtball/reddit-types" "0.0.4"
-
-"@zachtball/reddit-redux@^0.0.4":
-  version "0.0.4"
-  resolved "https://npm.pkg.github.com/download/@zachtball/reddit-redux/0.0.4/90d8a0f4027df8e0b7a4e9f77fc1a8c91218edae5654245ac698d816c39f3529#538d067d399c2e7cf3e370f285873a27218ade93"
-  integrity sha512-v9LmRK+CbGDea6kfn+TeFgtIzmDIEO2+wxZs0ahXsOCCLmKVhD0ZXH96dlehHq3DUUFBSPLJAyz9v6br98TGOA==
-  dependencies:
-    "@zachtball/reddit-types" "0.0.4"
-
-"@zachtball/reddit-types@0.0.4", "@zachtball/reddit-types@^0.0.4":
+"@zachtball/reddit-types@0.0.4":
   version "0.0.4"
   resolved "https://npm.pkg.github.com/download/@zachtball/reddit-types/0.0.4/9e7ec1698eaac733f7e7d989df726fd0659b6c78203210937c04f3acad6ae31b#e76e6c5b3f39409ba9eac379c40ff5ff33075d21"
   integrity sha512-cfz+LmXC67apJDiY004UR0QVxN3yHBRhCWzTdaoU/rjkpOwPG4pcJrvyOZQudxhBz2eAjbson3C6SqnTyy5U/w==

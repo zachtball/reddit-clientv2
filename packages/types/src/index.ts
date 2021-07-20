@@ -6,4 +6,4 @@
  *
  * @packageDocumentation
  */
-export type { IUser, ISubreddit } from './types';
+export type { IUser, ISubreddit, IPost } from './types';
