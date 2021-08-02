@@ -19,6 +19,7 @@ export interface ISubreddit {
  * @property {string} subreddit - subreddit that post belongs to
  * @property {string} thumbnail - url of thumbnail
  * @property {number} score - upvotes minus downvotes
+ * @property {string} domain - domain of url property
  */
 export interface IPost {
   link_flair_text: string;
@@ -29,4 +30,7 @@ export interface IPost {
   total_awards_received: number;
   score: number;
   id: string;
+  post_hint?: string;
+  url: string;
+  domain: string;
 }

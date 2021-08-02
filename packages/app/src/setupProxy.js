@@ -9,4 +9,18 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    'https://imgur.com',
+    createProxyMiddleware({
+      target: 'https://imgur.com',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    'https://www.reddit.com',
+    createProxyMiddleware({
+      target: 'https://www.reddit.com',
+      changeOrigin: true,
+    })
+  );
 };

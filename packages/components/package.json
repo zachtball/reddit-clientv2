@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@zachtball/reddit-redux": "^0.0.10",
-    "@zachtball/reddit-types": "^0.0.9"
+    "@zachtball/reddit-types": "^0.0.9",
+    "@zachtball/reddit-utils": "^0.0.7"
   },
   "scripts": {
     "build": "tsc -b .",
