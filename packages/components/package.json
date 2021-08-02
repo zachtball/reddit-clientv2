@@ -1,6 +1,6 @@
 {
   "name": "@zachtball/reddit-components",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/zachtball/reddit-clientv2",
@@ -15,9 +15,9 @@
     "react": ">=17.0.2"
   },
   "dependencies": {
-    "@zachtball/reddit-redux": "^0.0.10",
-    "@zachtball/reddit-types": "^0.0.9",
-    "@zachtball/reddit-utils": "^0.0.7"
+    "@zachtball/reddit-redux": "^0.0.11",
+    "@zachtball/reddit-types": "^0.0.10",
+    "@zachtball/reddit-utils": "^0.0.8"
   },
   "scripts": {
     "build": "tsc -b .",
