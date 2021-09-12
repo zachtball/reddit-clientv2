@@ -5,9 +5,9 @@ import { IPost } from '@zachtball/reddit-types';
 
 export const Home = (): ReactElement | null => {
   const authenticated = useSelector(({ auth }) => auth.authenticated);
-  const { data: posts, isLoading } = useGetContentQuery('best', { skip: !authenticated });
-  console.log(posts);
-  return !isLoading ? (
+  const { data: posts, isLoading, isError } = useGetContentQuery('best', { skip: !authenticated });
+  console.log({ posts, isError });
+  return !isLoading && authenticated && !isError ? (
     <div>
       {posts.map((postProps: IPost) => (
         <Post {...postProps} key={postProps.id} />

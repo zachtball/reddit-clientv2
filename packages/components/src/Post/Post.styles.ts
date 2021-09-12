@@ -3,7 +3,7 @@ import { Theme } from '@material-ui/core/styles';
 
 export const containerStyles = (theme: Theme) => css`
   background-color: ${theme.palette.primary.dark};
-  padding: ${theme.spacing(1)} ${theme.spacing(2)};
+  padding: 0 ${theme.spacing(2)} 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,11 +21,13 @@ export const containerStyles = (theme: Theme) => css`
 export const thumbnailStyles = css`
   height: 75px;
   width: 75px;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;
 
 export const imageThumbnailStyles = css`
-  width: 100px;
+  height: 100px;
+  width: 125px;
 `;
 
 export const iconContainerStyles = css`
@@ -48,8 +50,7 @@ export const thumbnailContainerStyles = (theme: Theme) => css`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85px;
-  width: 85px;
   margin-right: ${theme.spacing(4)};
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;

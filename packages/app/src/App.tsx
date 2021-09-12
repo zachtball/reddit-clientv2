@@ -62,6 +62,11 @@ const App = (): ReactElement => {
                       <Home />
                     </div>
                   </Route>
+                  <Route path="/m/">
+                    <div css={appContainerStyle}>
+                      <Home />
+                    </div>
+                  </Route>
                 </Navigation>
               </>
             )}

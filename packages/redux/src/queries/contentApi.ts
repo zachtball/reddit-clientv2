@@ -5,7 +5,7 @@ import { RootState } from '../index';
 export const contentApi: any = createApi({
   reducerPath: 'content',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'api/content/',
+    baseUrl: '/api/content/',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
 
