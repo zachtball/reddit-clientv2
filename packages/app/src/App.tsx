@@ -2,7 +2,7 @@
 import { ReactElement, useEffect, useRef } from 'react';
 import { Navigation, drawerWidth } from '@zachtball/reddit-components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Home } from '@zachtball/reddit-views';
+import { Home, MultiReddit } from '@zachtball/reddit-views';
 import { AuthRedirect } from '@zachtball/reddit-components';
 import { httpInit } from '@zachtball/reddit-api';
 import { Theme } from '@material-ui/core/styles';
@@ -62,9 +62,9 @@ const App = (): ReactElement => {
                       <Home />
                     </div>
                   </Route>
-                  <Route path="/m/">
+                  <Route path="/m">
                     <div css={appContainerStyle}>
-                      <Home />
+                      <MultiReddit />
                     </div>
                   </Route>
                 </Navigation>
